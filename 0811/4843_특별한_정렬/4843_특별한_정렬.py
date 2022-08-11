@@ -6,7 +6,7 @@ for tc in range(1, t + 1):
     numbers = list(map(int, input().split()))
 
     # numbers 오름차순 정렬
-    for i in range(n-1):
+    for i in range(n - 1):
         minidx = i
         for j in range(i + 1, n):
             if numbers[minidx] > numbers[j]:
@@ -20,6 +20,6 @@ for tc in range(1, t + 1):
         if k % 2 == 0:
             result[k] = numbers[-(k // 2 + 1)]
         else:
-            result[k] = numbers[k//2]
+            result[k] = numbers[k // 2]
 
     print(f'#{tc}', *result)  # * 붙여서 언팩킹
