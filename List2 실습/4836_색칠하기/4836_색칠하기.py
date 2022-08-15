@@ -6,7 +6,7 @@ t = int(input())
 
 for tc in range(1, t + 1):
 
-    arr = [[0]*10 for _ in range(10)]
+    arr = [[0] * 10 for _ in range(10)]
 
     # 색칠 영역
     n = int(input())
@@ -15,17 +15,10 @@ for tc in range(1, t + 1):
         violet_count = 0  # 보라색이 몇 개 있는지를 담을 변수
         color_area = list(map(int, input().split()))
 
-        # 빨간색 색칠 영역에 접근하기
-        if color_area[4] == 1:
-            for i in range(color_area[0], color_area[2] + 1):
-                for j in range(color_area[1], color_area[3] + 1):
-                    arr[i][j] += 1
-
-        # 파란색 색칠 영역에 접근하기
-        if color_area[4] == 2:
-            for i in range(color_area[0], color_area[2] + 1):
-                for j in range(color_area[1], color_area[3] + 1):
-                    arr[i][j] += 2
+        # 색칠하기
+        for i in range(color_area[0], color_area[2] + 1):
+            for j in range(color_area[1], color_area[3] + 1):
+                arr[i][j] += color_area[4]
 
         # 전체 영역을 돌면서 값이 3인 것을 찾아 +1 해주기
         for i in range(10):
