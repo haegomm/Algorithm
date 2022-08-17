@@ -5,6 +5,10 @@ for tc in range(1, t + 1):
     search_word = input()
     words = input()
 
-    search_count = words.count(search_word)
+    if search_word in words:
+        result = 1
 
-    print(f'#{tc} {search_count}')
+    else:
+        result = 0
+
+    print(f'#{tc} {result}')
