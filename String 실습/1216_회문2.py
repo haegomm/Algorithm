@@ -15,8 +15,8 @@ for _ in range(10):
         for idx in range(n):
             for m in range(100, 0, -1):
                 for i in range(n - m + 1):
-                    check_row = row_words[idx][i : i + m]
-                    check_col = col_words[idx][i : i + m]
+                    check_row = row_words[idx][i: i + m]
+                    check_col = col_words[idx][i: i + m]
 
                     if (check_row == check_row[::-1]) or (check_col == check_col[::-1]):
                         if max_palindrome < len(check_row) or max_palindrome < len(
