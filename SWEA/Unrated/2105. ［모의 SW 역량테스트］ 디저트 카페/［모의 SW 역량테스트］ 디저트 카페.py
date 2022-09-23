@@ -9,7 +9,7 @@ d_sheet = {
 }
 
 
-def tour(row, col, direction, r_d, rotate_cnt=0, memo=tuple([0])):
+def tour(row, col, direction, rotate_cnt=0, memo=tuple([0])):
     '''
     :param direction: 현재 진행 방향
     :param r_d: 회전하는 방향(rotate_direction), 시계방향인지 반시계방향인지
@@ -45,14 +45,14 @@ def tour(row, col, direction, r_d, rotate_cnt=0, memo=tuple([0])):
 
     # 가장자리에 도착할 경우: 방향 회전
     if (rotate_cnt < 3) and (next_r == board_size - 1 or next_c == board_size - 1):
-        tour(next_r, next_c, d_sheet[r_d]
-             [direction], r_d, rotate_cnt + 1, memo)
+        tour(next_r, next_c, d_sheet[1]
+             [direction], rotate_cnt + 1, memo)
     # 다 아니면 그냥 가던방향 유지, 회전하기
     else:
-        tour(next_r, next_c, direction, r_d, rotate_cnt, memo)
+        tour(next_r, next_c, direction, rotate_cnt, memo)
         if rotate_cnt < 3:
-            tour(next_r, next_c, d_sheet[r_d]
-                 [direction], r_d, rotate_cnt + 1, memo)
+            tour(next_r, next_c, d_sheet[1]
+                 [direction], rotate_cnt + 1, memo)
 
 
 for case in range(1, int(input()) + 1):
@@ -67,6 +67,6 @@ for case in range(1, int(input()) + 1):
         for col in range(board_size):
             start_rc = (row, col)
             for direction in range(4):
-                tour(row, col, direction, 1)
+                tour(row, col, direction)
 
     print(f'#{case} {result}')
