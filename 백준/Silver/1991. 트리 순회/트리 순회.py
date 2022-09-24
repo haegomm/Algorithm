@@ -1,61 +1,32 @@
-# 트리 순회
+def pre_order(node):
+    if node != '.':
+        print(node, end='')
+        pre_order(tree[ord(node)-65][0])
+        pre_order(tree[ord(node)-65][1])
 
-# 노드 개수
-node_cnt = int(input())
+def in_order(node):
+    if node != '.':
+        in_order(tree[ord(node)-65][0])
+        print(node, end='')
+        in_order(tree[ord(node)-65][1])
 
-# 부모 자식 정보
-pa = dict()
-ch1 = dict()
-ch2 = dict()
+def post_order(node):
+    if node != '.':
+        post_order(tree[ord(node)-65][0])
+        post_order(tree[ord(node)-65][1])
+        print(node, end='')
 
-node_list = []
-# 각 노드 정보 받기
-for i in range(node_cnt):
-    node, sub1, sub2 = input().split()
 
-    node_list.append(node)
+v = int(input())
+tree = [[0]*3 for _ in range(v)]
 
-    if sub1 != '.':
-        pa[sub1] = node
-        ch1[node] = sub1
+for _ in range(v):
+    info = list(input().split())
 
-    if sub2 != '.':
-        pa[sub2] = node
-        ch2[node] = sub2
+    tree[ord(info[0])-65][0], tree[ord(info[0])-65][1] = info[1], info[2]
 
-def find_root(r):
-    while pa.get(r, 'no_parent') != 'no_parent':
-        r = pa[r]
-    return r
-
-root = find_root(node_list[0])
-
-a = ''
-def preorder(n):
-    global a
-    if n:
-        a += n
-        preorder(ch1.get(n, 0))
-        preorder(ch2.get(n, 0))
-preorder(root)
-print(a)
-
-b = ''
-def inorder(n):
-    global b
-    if n:
-        inorder(ch1.get(n, 0))
-        b += n
-        inorder(ch2.get(n, 0))
-inorder(root)
-print(b)
-
-c = ''
-def postorder(n):
-    global c
-    if n:
-        postorder(ch1.get(n, 0))
-        postorder(ch2.get(n, 0))
-        c += n
-postorder(root)
-print(c)
+pre_order('A')
+print()
+in_order('A')
+print()
+post_order('A')
