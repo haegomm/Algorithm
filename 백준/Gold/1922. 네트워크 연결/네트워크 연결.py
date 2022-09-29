@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def find_set(node):
     if node != parent[node]:
         parent[node] = find_set(parent[node])
