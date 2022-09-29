@@ -5,12 +5,13 @@ input = sys.stdin.readline
 students, edge_cnt, house = map(int, input().split())
 
 graph = [[] for _ in range(students + 1)]
+graph_reverse = [[] for _ in range(students + 1)]
 for _ in range(edge_cnt):
     s, e, w = map(int, input().split())
     graph[s].append((e, w))
+    graph_reverse[e].append((s, w))
 
-
-def dijkstra(start, target):
+def dijkstra(start, graph):
     INF = 99999999999
     distance = [INF] * (students + 1)
     distance[start] = 0
@@ -29,11 +30,15 @@ def dijkstra(start, target):
                 distance[next_node] = new_dist
                 heappush(heap, (new_dist, next_node))
 
-    return distance[target]
+    return distance
 
-go_back = [0] * (students + 1)
+go = dijkstra(house, graph)
+back = dijkstra(house, graph_reverse)
 
+result = 0
 for student in range(1, students + 1):
-    go_back[student] += dijkstra(student, house) + dijkstra(house, student)
-    
-print(max(go_back))
+    time = go[student] + back[student]
+    if time > result:
+        result = time
+
+print(result)
