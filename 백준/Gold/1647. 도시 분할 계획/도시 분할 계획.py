@@ -1,15 +1,14 @@
 import sys
 input = sys.stdin.readline
 
-def find_set(parent, x):
+
+def find_set(x):
     if parent[x] != x:
-        parent[x] = find_set(parent, parent[x])
+        parent[x] = find_set(parent[x])
     return parent[x]
 
-def union_parent(parent, a, b):
-    a = find_set(parent, a)
-    b = find_set(parent, b)
 
+def union_parent(a, b):
     if a > b:
         parent[a] = b
     else:
@@ -26,8 +25,9 @@ graph.sort()
 parent = list(range(node_cnt + 1))
 result = []
 for cost, a, b in graph:
-    if find_set(parent, a) != find_set(parent, b):
-        union_parent(parent, a, b)
+    a_root, b_root = find_set(a), find_set(b)
+    if a_root != b_root:
+        union_parent(a_root, b_root)
         result.append(cost)
 
 print(sum(result[:-1]))
