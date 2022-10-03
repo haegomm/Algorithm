@@ -10,7 +10,7 @@ for _ in range(4):
         else:
             print('b')
 
-    elif x1 == p2 or y1 == q2 or p1 == x2 or q1 == y2:
+    elif y1 == q2 or q1 == y2:
         print('b')
 
     else:
