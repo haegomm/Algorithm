@@ -1,6 +1,5 @@
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
-wh = {6, 7, 8, 9, 10}
 
 def pinball(x, y):
     global max_score
@@ -11,15 +10,12 @@ def pinball(x, y):
         score = 0
 
         while 0 <= nx < n and 0 <= ny < n and board[nx][ny] != -1 and (nx, ny) != (x, y):
-            # print(nx, ny, x, y, d)
-            # if nx == 0 or ny == 0 or nx == (n - 1) or ny == (n - 1) or board[nx][ny] == 5:
-
             if board[nx][ny] == 5:
                 score *= 2
                 score += 1
                 break
-                
-            elif board[nx][ny] in wh:
+
+            elif 6 <= board[nx][ny] <= 10:
                 breaker = False
                 for i in range(n):
                     if breaker:
@@ -31,17 +27,17 @@ def pinball(x, y):
                             breaker = True
                             break
 
-            elif board[nx][ny] in {1, 2, 3, 4}:
+            elif 1 <= board[nx][ny] <= 4:
                 d = block[board[nx][ny]][d]
                 score += 1
 
             nx += dx[d]
             ny += dy[d]
-            
+
         if not (0 <= nx < n and 0 <= ny < n):
             score *= 2
             score += 1
-            
+
         if max_score < score:
             max_score = score
 
