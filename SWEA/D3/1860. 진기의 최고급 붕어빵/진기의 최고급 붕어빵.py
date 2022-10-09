@@ -1,20 +1,18 @@
-for tc in range(1, int(input()) + 1):
-    N, M, K = map(int, input().split())
-    times = list(map(int, input().split()))
-    times.sort()
+for t in range(1, int(input()) + 1):
+    n, m, k = map(int, input().split())
+    guest = sorted(list(map(int, input().split())))
+    bung = 0
+    result = 'Possible'
 
-    total = 0
-    ans = 'Possible'
-    for t in range(0, 11111 + 1):
-        if t != 0 and t % M == 0:
-            total += K
+    for time in range(0, 11112):
+        if time != 0 and time % m == 0:
+            bung += k
 
-        if t in times:
-            if total <= 0:
-
-                ans = 'Impossible'
+        if time in guest:
+            if bung <= 0:
+                result = 'Impossible'
                 break
             else:
-                total -= 1
+                bung -= 1
 
-    print(f'#{tc} {ans}')
+    print(f'#{t} {result}')
