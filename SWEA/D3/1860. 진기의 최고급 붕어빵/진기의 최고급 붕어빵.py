@@ -4,7 +4,7 @@ for t in range(1, int(input()) + 1):
     bung = 0
     result = 'Possible'
 
-    for time in range(0, 11112):
+    for time in range(0, guest[-1] + 1):
         if time != 0 and time % m == 0:
             bung += k
 
@@ -13,6 +13,10 @@ for t in range(1, int(input()) + 1):
                 result = 'Impossible'
                 break
             else:
-                bung -= 1
+                while time == guest[0]:
+                    bung -= 1
+                    guest.remove(guest[0])
+                    if not guest:
+                        break
 
     print(f'#{t} {result}')
