@@ -6,12 +6,12 @@ for t in range(1, int(input()) + 1):
     for i in range(n-1):
         for j in range(i+1, n):
             mul = str(numbers[i] * numbers[j])
-            for j in range(len(mul)-1):
-                if mul[j] > mul[j+1]:
+            for k in range(len(mul)-1):
+                if mul[k] > mul[k+1]:
                     break
             else:
-                if int(result) < int(mul):
-                    result = mul
+                if result < int(mul):
+                    result = int(mul)
                     break
 
     print(f'#{t} {result}')
