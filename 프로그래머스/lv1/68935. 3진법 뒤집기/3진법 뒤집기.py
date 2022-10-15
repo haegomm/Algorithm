@@ -1,7 +1,7 @@
 def solution(n):
     three = ''
     while n > 0:
-        n, mod = divmod(n, 3)
-        three += str(mod)
+        three += str(n % 3)
+        n = n // 3
     answer = int(three, 3)
     return answer
