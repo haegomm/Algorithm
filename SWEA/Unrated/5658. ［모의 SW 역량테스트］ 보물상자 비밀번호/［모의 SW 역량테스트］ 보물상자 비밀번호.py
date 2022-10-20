@@ -5,7 +5,7 @@ for t in range(1, int(input()) + 1):
     turn = n // 4
 
     for _ in range(turn):
-        for i in range(0, n - turn + 1, turn):
+        for i in range(0, n, turn):
             unlock.append(int(password[i:i + turn], 16))
 
         password = password[-1] + password[:n-1]
