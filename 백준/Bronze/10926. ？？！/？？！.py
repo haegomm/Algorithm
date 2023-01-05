@@ -1,0 +1,3 @@
+nickname = input()
+
+print(nickname+"??!")
