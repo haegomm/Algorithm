@@ -1,8 +1,10 @@
-n = int(input())
+import sys
+
+n = int(sys.stdin.readline())
 words = []
 
 for _ in range(n):
-    word = str(input())
+    word = str(sys.stdin.readline().strip())
     word_count = len(word)
     words.append((word, word_count))
 
