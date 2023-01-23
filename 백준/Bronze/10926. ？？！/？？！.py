@@ -1,3 +1,1 @@
-nickname = input()
-
-print(nickname+"??!")
+print(input() + '??!')
