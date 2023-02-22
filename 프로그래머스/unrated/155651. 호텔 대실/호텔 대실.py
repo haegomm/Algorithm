@@ -1,19 +1,22 @@
 def solution(book_time):
+    def change(reservation_time):
+        return int(reservation_time[0:2]) * 60 + int(reservation_time[3:])
 
-    def change_min(str_time: str) -> int:
-        return int(str_time[0:2]) * 60 + int(str_time[3:])
-	
-    book_times = sorted([[change_min(i[0]), change_min(i[1]) + 10] for i in book_time])
-	
-    rooms = []
-    for book_time in book_times:
-        if not rooms:
-            rooms.append(book_time)
+    reservations = []
+    for time in book_time:
+        reservations.append([change(time[0]), change(time[1]) + 10])
+
+    reservations.sort()
+
+    hotel_rooms = []
+    for reservation in reservations:
+        if not hotel_rooms:
+            hotel_rooms.append(reservation)
             continue
-        for index, room in enumerate(rooms):
-            if book_time[0] >= room[-1]:
-                rooms[index] = room + book_time
+        for idx, room in enumerate(hotel_rooms):
+            if reservation[0] >= room[-1]:
+                hotel_rooms[idx] = room + reservation
                 break
         else:
-            rooms.append(book_time)
-    return len(rooms)
+            hotel_rooms.append(reservation)
+    return len(hotel_rooms)
