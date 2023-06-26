@@ -3,17 +3,10 @@ tc = int(input())
 for t in range(tc):
     stack = []
     brackets = input()
-    for i in brackets:
-        if i == '(':
-            stack.append('(')
-        else:
-            if len(stack) == 0:
-                print('NO')
-                break
-            else:
-                stack.pop()
+    while '()' in brackets:
+        brackets = brackets.replace('()', '')
+
+    if brackets:
+        print('NO')
     else:
-        if not stack:
-            print('YES')
-        else:
-            print('NO')
+        print('YES')
