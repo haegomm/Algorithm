@@ -1,7 +1,4 @@
-from collections import deque
-
-n = deque(range(1, int(input())+1,))
-while len(n) != 1:
-    n.popleft()
-    n.rotate(-1)
-print(n[0])
+n,p = int(input()), 1
+while p < n:
+    p *= 2
+print(2*n-p)
