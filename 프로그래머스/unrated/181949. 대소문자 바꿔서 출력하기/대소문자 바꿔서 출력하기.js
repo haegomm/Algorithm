@@ -10,11 +10,7 @@ rl.on('line', function (line) {
     input = [line];
 }).on('close',function(){
     str = input[0];
-    answer = ''
-    for(let alphabet of str){
-        if(alphabet === alphabet.toUpperCase()){
-            answer += alphabet.toLowerCase()
-        }else answer += alphabet.toUpperCase()
-    }
-    console.log(answer)
+    const regex = /[A-Z]/
+    console.log([...str].map((v)=> regex.test(v) ? v.toLowerCase() 
+		: v.toUpperCase()).join(''))
 });
