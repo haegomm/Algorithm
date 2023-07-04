@@ -1,23 +1,18 @@
 import sys
-from collections import deque
-import heapq
 
 tc = int(sys.stdin.readline())
 
 for _ in range(tc):
     n, m = map(int, sys.stdin.readline().split())
-    documents = deque(enumerate(map(int, sys.stdin.readline().split())))
-    priority_queue = []
-    for idx, priority in documents:
-        heapq.heappush(priority_queue, -priority)
+    documents = list(map(int, sys.stdin.readline().split()))
+    que = [(i, documents[i]) for i in range(len(documents))]
+    documents.sort(reverse=True)
     cnt = 0
-    while documents:
-        idx, priority = documents.popleft()
-        if priority == -priority_queue[0]:
-            heapq.heappop(priority_queue)
-            cnt += 1
-            if idx == m:
-                print(cnt)
-                break
-        else:
-            documents.append((idx, priority))
+    for now in documents:
+        while que[0][1] != now:
+            tmp = que.pop(0)
+            que.append(tmp)
+        cnt += 1
+        if que.pop(0)[0] == m:
+            break
+    print(cnt)
