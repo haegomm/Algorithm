@@ -5,7 +5,7 @@ tc = int(sys.stdin.readline())
 for _ in range(tc):
     n, m = map(int, sys.stdin.readline().split())
     documents = list(map(int, sys.stdin.readline().split()))
-    que = [(i, documents[i]) for i in range(len(documents))]
+    que = list(enumerate(documents))
     documents.sort(reverse=True)
     cnt = 0
     for now in documents:
