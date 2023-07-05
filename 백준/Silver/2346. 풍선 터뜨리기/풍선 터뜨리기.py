@@ -7,7 +7,7 @@ result = []
 while balloon:
     move = value[idx]
     result.append(balloon.pop(idx))
-    value.pop(idx)
+    del value[idx]
     if balloon:
         if move > 0:
             idx = (idx + move - 1) % len(balloon)
