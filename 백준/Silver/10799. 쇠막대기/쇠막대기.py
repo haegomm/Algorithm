@@ -1,18 +1,15 @@
 stick = input()
 stick.strip('()')
-stack = []
-cnt = 0
+stack = 0
 answer = 0
 
-for i in range(len(stick)):
-    if stick[i] == '(':
-        cnt += 1
+for i in stick.replace('()', '|'):
+    if i == '(':
+        stack += 1
+    elif i == '|':
+        answer += stack
     else:
-        if stick[i - 1] == '(':
-            cnt -= 1
-            answer += cnt
-        else:
-            answer += 1
-            cnt -= 1
+        answer += 1
+        stack -= 1
 
 print(answer)
