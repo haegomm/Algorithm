@@ -1,17 +1,13 @@
 n = int(input())
-tops = list(map(int, input().split()))
+tops = map(int, input().split())
 stack = []
-answer = []
+answer = [0] * (n + 1)
 
-for i in range(n):
-    while stack and stack[-1][1] < tops[i]:
+for idx, top in enumerate(tops, 1):
+    while stack and stack[-1][0] < top:
         stack.pop()
+    if stack:
+        answer[idx] = stack[-1][1]
+    stack.append((top, idx))
 
-    if not stack:
-        answer.append(0)
-    else:
-        answer.append(stack[-1][0] + 1)
-
-    stack.append((i, tops[i]))
-
-print(*answer)
+print(*answer[1:])
