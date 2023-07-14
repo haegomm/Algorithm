@@ -1,25 +1,27 @@
-import sys
+from collections import deque
+from sys import stdin
 
-N = int(sys.stdin.readline())
-circles = []
 
-for i in range(N):
-    x, r = map(int, sys.stdin.readline().split());
-    circles.append((x-r, i))
-    circles.append((x+r, i))    
-circles.sort()
+def chk():
+    stack = deque()
+    for start, end in circle:
+        while stack and stack[-1] < start:
+            stack.pop()
+        if stack:
+            if start <= stack[-1] <= end:
+                return False
+        stack.append(end)
+    return True
 
-stk = []
-for c in circles:
-    if stk:
-        if stk[-1][1] == c[1]:
-            stk.pop()
-        else:
-            stk.append(c)
-    else:
-        stk.append(c) 
-    
-if stk:
-    print('NO')
-else:
+
+circle = []
+n = int(stdin.readline())
+for i in range(n):
+    center, radius = map(int, stdin.readline().split())
+    circle.append((center - radius, center + radius))
+circle.sort()
+
+if chk():
     print('YES')
+else:
+    print('NO')
