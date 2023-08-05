@@ -1,15 +1,16 @@
 import sys
 
-n, m = map(int, sys.stdin.readline().strip().split())
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
 check = set()
 cnt = 0
 
 for _ in range(n):
-    check.add(sys.stdin.readline().strip())
+    check.add(input().strip())
 
 for _ in range(m):
-    word = sys.stdin.readline().strip()
-    if word in check:
+    if input().strip() in check:
         cnt += 1
 
 print(cnt)
