@@ -1,16 +1,23 @@
-import heapq
+import sys
+input = sys.stdin.readline
 
-n = int(input())
-heap = []
+N = int(input())
 
-for _ in range(n):
-    row = list(map(int, input().split()))
-    for num in row:
-        if len(heap) < n:
-            heapq.heappush(heap, num)
-        else:
-            if num > heap[0]:
-                heapq.heappop(heap)
-                heapq.heappush(heap, num)
+numbers = []
+for _ in range(N):
+    numbers.append(list(map(int, input().split())))
 
-print(heap[0])
+indices = [N-1]*N
+
+for _ in range(N):
+    maxNumber = numbers[indices[0]][0]
+    maxIndex = 0
+    for i in range(1, N):
+        if maxNumber < numbers[indices[i]][i]:
+            maxNumber = numbers[indices[i]][i]
+            maxIndex = i
+
+    indices[maxIndex] -= 1
+
+indices[maxIndex] += 1
+print(numbers[indices[maxIndex]][maxIndex])
