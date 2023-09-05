@@ -1,44 +1,36 @@
-from datetime import datetime
 from collections import defaultdict
 import sys
+
 input = sys.stdin.readline
- 
-def convert_L(L):
-    day,arg = L.split('/')
-    day = int(day)
-    hour,min = map(int,arg.split(':'))
-    total_min = min + hour*60 + day*24*60
-    return total_min
- 
-N,L,F = list(input().split())
-N = int(N)
-F = int(F)
-L = convert_L(L)
-part_manager_dict = defaultdict(dict)
- 
-tardy_dict = defaultdict(int)
-for _ in range(N):
-    total_string = input()
-    time_string = total_string[:16]
-    time_S = datetime.strptime(time_string,'%Y-%m-%d %H:%M')
-    part_name,person = total_string[16:].split()
-    if part_manager_dict[person].get(part_name):
-        borrowed_time = time_S - part_manager_dict[person][part_name]
-        day = borrowed_time.days
-        min = borrowed_time.seconds//60
-        to_time = day*60*24 + min
-        if to_time > L:
-            tardy_dict[person] += (to_time-L)*F
-        del part_manager_dict[person][part_name]
+month_to_day = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
+
+
+def change_minute(month, day, hour, minute):
+    return (month_to_day[month - 1] + day) * 1440 + hour * 60 + minute
+
+
+N, l, f = input().split()
+F = int(f)
+L = change_minute(1, int(l[:3]), int(l[4:6]), int(l[7:9]))
+
+rental_time = defaultdict(defaultdict)
+penalty = defaultdict(int)
+for _ in range(int(N)):
+    data = input().strip()
+    minute = change_minute(
+        int(data[5:7]), int(data[8:10]), int(data[11:13]), int(data[14:16])
+    )
+    part, name = data[17:].split()
+    if part in rental_time[name]:
+        overtime = minute - rental_time[name][part] - L
+        if overtime > 0:
+            penalty[name] += F * overtime
+        del rental_time[name][part]
     else:
-        part_manager_dict[person][part_name] = time_S
- 
- 
-if len(tardy_dict.keys()):
-    key_list = sorted(tardy_dict.keys())
- 
-    for key in key_list:
-        print(key,int(tardy_dict[key]))
- 
+        rental_time[name][part] = minute
+
+if penalty:
+    for name in sorted(penalty):
+        print(name, penalty[name])
 else:
     print(-1)
