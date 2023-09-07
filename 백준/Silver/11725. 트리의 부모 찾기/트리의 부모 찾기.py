@@ -1,23 +1,20 @@
 import sys
+from collections import deque
 
-sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-
 def find_parent(v):
-    check[v] = True
-
-    for next_v in graph[v]:
-        if not check[next_v]:
-            parent[next_v] = v
-            check[next_v] = True
-            find_parent(next_v)
-
+    queue = deque([v])
+    while queue:
+        current = queue.popleft()
+        for next_v in graph[current]:
+            if parent[next_v] == 0:
+                parent[next_v] = current
+                queue.append(next_v)
 
 n = int(input())
 graph = [[] for _ in range(n + 1)]
-parent = [[] for _ in range(n + 1)]
-check = [False] * (n + 1)
+parent = [0 for _ in range(n + 1)]
 
 for _ in range(n - 1):
     v1, v2 = map(int, input().split())
