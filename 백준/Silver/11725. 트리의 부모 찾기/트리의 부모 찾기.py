@@ -8,7 +8,7 @@ def find_parent(v):
     while queue:
         current = queue.popleft()
         for next_v in graph[current]:
-            if parent[next_v] == 0:
+            if parent[next_v] == 0:  # 아직 부모가 설정되지 않았을 경우
                 parent[next_v] = current
                 queue.append(next_v)
 
