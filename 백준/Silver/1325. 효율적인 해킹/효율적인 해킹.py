@@ -1,35 +1,41 @@
-from collections import deque
 import sys
+from collections import deque
+
 input = sys.stdin.readline
 
-n, m = map(int, input().split())
-relationship = [[] for _ in range(n + 1)]
 
-for _ in range(m):
-    A, B = map(int, input().split())
-    relationship[B].append(A)
+def bfs(v):
+    cnt = 1
+    infected = [0] * (n + 1)
+    infected[v] = 1
+    queue = deque([v])
 
-def bfs(start):
-    q = deque()
-    q.append(start)
-    cnt = 0
-
-    visited = [False] * (n + 1)
-    visited[start] = True
-
-    while q:
-        cur = q.popleft()
-        for next in relationship[cur]:
-            if not visited[next]:
-                visited[next] = True
-                q.append(next)
+    while queue:
+        v = queue.popleft()
+        for next in graph[v]:
+            if not infected[next]:
+                infected[next] = 1
                 cnt += 1
+                queue.append(next)
     return cnt
 
-result = []
-for start in range(1, len(relationship)):
-    result.append(bfs(start))
 
-for i in range(len(result)):
-    if max(result) == result[i]:
-        print(i + 1)
+n, m = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
+maxCnt = 1
+ans = []
+
+for _ in range(m):
+    v1, v2 = map(int, input().split())
+    graph[v2].append(v1)
+
+for i in range(1, n + 1):
+    cnt = bfs(i)
+    if cnt > maxCnt:
+        maxCnt = cnt
+        ans.clear()
+        ans.append(i)
+    elif cnt == maxCnt:
+        ans.append(i)
+
+print(*ans)
