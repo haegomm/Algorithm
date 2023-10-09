@@ -3,9 +3,8 @@ def gobang(x, y):
     dol = board[x][y]
 
     for dx, dy in [(0, 1), (1, 0), (1, 1), (-1, 1)]:
-        cnt = 1
-        nx = x + dx
-        ny = y + dy
+        cnt = 0
+        nx, ny = x, y
         while 0 <= nx < 19 and 0 <= ny < 19 and board[nx][ny] == dol:
             cnt += 1
             nx += dx
