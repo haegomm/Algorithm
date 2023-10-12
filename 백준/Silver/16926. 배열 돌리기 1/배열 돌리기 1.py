@@ -1,56 +1,33 @@
-def rotate_matrix_layer(x1, y1, x2, y2, r):
-    queue = []
-    x, y = x1, y1
-    while x < x2:
-        queue.append(arr[x][y])
-        x += 1
-    x, y = x2, y1
-    while y < y2:
-        queue.append(arr[x][y])
-        y += 1
-    x, y = x2, y2
-    while x > x1:
-        queue.append(arr[x][y])
-        x -= 1
-    x, y = x1, y2
-    while y > y1:
-        queue.append(arr[x][y])
-        y -= 1
+import sys
 
-    r %= len(queue)
-    queue = queue[-r:] + queue[:-r]
+input = sys.stdin.readline
+from collections import deque
 
-    idx = 0
-    x, y = x1, y1
-    while x < x2:
-        new[x][y] = queue[idx]
-        idx += 1
-        x += 1
-    x, y = x2, y1
-    while y < y2:
-        new[x][y] = queue[idx]
-        idx += 1
-        y += 1
-    x, y = x2, y2
-    while x > x1:
-        new[x][y] = queue[idx]
-        idx += 1
-        x -= 1
-    x, y = x1, y2
-    while y > y1:
-        new[x][y] = queue[idx]
-        idx += 1
-        y -= 1
+y, x, n = map(int, input().split())
 
+deq = deque()
+array = [list(input().split()) for _ in range(y)]
+answer = [[0] * x for _ in range(y)]
 
-n, m, r = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(n)]
-new = [[0] * m for _ in range(n)]
+loops = min(y, x) // 2
 
-for i in range(0, min(n, m) // 2):
-    x1, y1 = i, i
-    x2, y2 = n - i - 1, m - i - 1
-    rotate_matrix_layer(x1, y1, x2, y2, r)
+for i in range(loops):
+    deq.clear()
+    deq.extend(array[i][i : x - i])
+    deq.extend([row[x - i - 1] for row in array[i + 1 : y - i - 1]])
+    deq.extend(array[y - i - 1][i : x - i][::-1])
+    deq.extend([row[i] for row in array[i + 1 : y - i - 1][::-1]])
 
-for line in new:
-    print(*line)
+    deq.rotate(-n)
+
+    for j in range(i, x - i):  # 위쪽
+        answer[i][j] = deq.popleft()
+    for j in range(i + 1, y - i - 1):  # 오른쪽
+        answer[j][x - i - 1] = deq.popleft()
+    for j in range(x - i - 1, i - 1, -1):  # 아래쪽
+        answer[y - i - 1][j] = deq.popleft()
+    for j in range(y - i - 2, i, -1):  # 왼쪽
+        answer[j][i] = deq.popleft()
+
+for line in answer:
+    print(" ".join(line))
