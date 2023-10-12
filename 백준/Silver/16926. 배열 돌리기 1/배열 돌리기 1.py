@@ -20,13 +20,13 @@ for i in range(loops):
 
     deq.rotate(-n)
 
-    for j in range(i, x - i):  # 위쪽
+    for j in range(i, x - i):
         answer[i][j] = deq.popleft()
-    for j in range(i + 1, y - i - 1):  # 오른쪽
+    for j in range(i + 1, y - i - 1):
         answer[j][x - i - 1] = deq.popleft()
-    for j in range(x - i - 1, i - 1, -1):  # 아래쪽
+    for j in range(x - i - 1, i - 1, -1):
         answer[y - i - 1][j] = deq.popleft()
-    for j in range(y - i - 2, i, -1):  # 왼쪽
+    for j in range(y - i - 2, i, -1):
         answer[j][i] = deq.popleft()
 
 for line in answer:
