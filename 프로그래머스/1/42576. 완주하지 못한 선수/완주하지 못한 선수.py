@@ -1,9 +1,8 @@
+from collections import Counter
+
+
 def solution(participant, completion):
-    from collections import Counter
 
-    participant_count = Counter(participant)
-    completion_count = Counter(completion)
-
-    answer = participant_count - completion_count
+    answer = Counter(participant) - Counter(completion)
 
     return list(answer.keys())[0]
