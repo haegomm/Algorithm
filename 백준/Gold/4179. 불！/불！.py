@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def move():
+def move_hun():
     global hun, escape
     temp = deque([])
     while hun:
@@ -58,7 +58,7 @@ for i in range(n):
 
 while True:
     move_fire()
-    move()
+    move_hun()
     time += 1
     if escape:
         print(time + 1)
