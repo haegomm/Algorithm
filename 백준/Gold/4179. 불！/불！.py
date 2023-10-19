@@ -3,7 +3,6 @@ from collections import deque
 
 def move():
     global hun, escape
-    move_fire()
     temp = deque([])
     while hun:
         i, j = hun.popleft()
@@ -58,6 +57,7 @@ for i in range(n):
             fire.append((i, j))
 
 while True:
+    move_fire()
     move()
     time += 1
     if escape:
