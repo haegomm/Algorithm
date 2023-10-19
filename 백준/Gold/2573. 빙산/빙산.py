@@ -18,10 +18,10 @@ def bfs():
     new = []
     for x, y in ice:
         polar[x][y] -= melt[(x, y)]
-        if polar[x][y] < 0:
+        if polar[x][y] <= 0:
             polar[x][y] = 0
-        elif polar[x][y] > 0:
-            new.append((x, y))
+            continue
+        new.append((x, y))
 
     return new
 
@@ -56,9 +56,9 @@ while True:
                 print(time)
                 exit()
 
+    ice = bfs()
     if not ice:
         print(0)
         break
 
-    ice = bfs()
     time += 1
