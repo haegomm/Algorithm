@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 
 input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
@@ -49,7 +48,7 @@ for i in range(n):
 while True:
     visited = [[False] * m for _ in range(n)]
     cnt = 0
-    for i, j in list(ice):
+    for i, j in ice:
         if not visited[i][j]:
             dfs(i, j)
             cnt += 1
