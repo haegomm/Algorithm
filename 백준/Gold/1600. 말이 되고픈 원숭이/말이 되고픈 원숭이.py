@@ -49,7 +49,7 @@ k = int(input())
 w, h = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(h)]
 visited = [[-1] * w for _ in range(h)]
-visited[0][0] = k  # 시작 위치는 이미 방문한 것으로 처리
+visited[0][0] = k
 ans = -1
 
 move(0, 0)
