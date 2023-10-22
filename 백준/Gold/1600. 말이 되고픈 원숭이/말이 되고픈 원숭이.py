@@ -3,7 +3,6 @@ from collections import deque
 
 def move(i, j):
     global ans
-    visited[i][j][k] = True
     move = deque([(i, j, k, 0)])
 
     while move:
@@ -28,10 +27,11 @@ def move(i, j):
                     0 <= nx < h
                     and 0 <= ny < w
                     and not board[nx][ny]
-                    and not visited[nx][ny][nk - 1]
+                    and visited[nx][ny] < nk - 1
                 ):
-                    visited[nx][ny][nk - 1] = True
+                    visited[nx][ny] = nk - 1
                     move.append((nx, ny, nk - 1, d + 1))
+
         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
             nx = x + dx
             ny = y + dy
@@ -39,16 +39,17 @@ def move(i, j):
                 0 <= nx < h
                 and 0 <= ny < w
                 and not board[nx][ny]
-                and not visited[nx][ny][nk]
+                and visited[nx][ny] < nk
             ):
-                visited[nx][ny][nk] = True
+                visited[nx][ny] = nk
                 move.append((nx, ny, nk, d + 1))
 
 
 k = int(input())
 w, h = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(h)]
-visited = [[[False] * (k + 1) for _ in range(w)] for _ in range(h)]
+visited = [[-1] * w for _ in range(h)]
+visited[0][0] = k  # 시작 위치는 이미 방문한 것으로 처리
 ans = -1
 
 move(0, 0)
