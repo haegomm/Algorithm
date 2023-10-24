@@ -21,24 +21,22 @@ def move():
                     visited[nx][ny] = True
                     deq.append((nx, ny))
         temp = []
-        for wx, wy in wall[::-1]:
+        for wx, wy in wall:
             maze[wx][wy] = '.'
             nwx = wx + 1
             if nwx == 8:
                 continue
             maze[nwx][wy] = '#'
             temp.append((nwx, wy))
-        wall = temp[::-1]
-        for wx, wy in wall:
-            visited[wx][wy] = False
+        wall = temp
     return 0
 
 
 maze = [list(input().strip()) for _ in range(8)]
 wall = []
 
-for i in range(8):
-    for j in range(8):
+for i in range(7, -1, -1):
+    for j in range(7, -1, -1):
         if maze[i][j] == '#':
             wall.append((i, j))
 
