@@ -21,8 +21,6 @@ def move():
     return -1
 
 
-
-
 n, m = map(int, input().split())
 board = [list(map(int, input().strip())) for _ in range(n)]
 visited = [[-1] * m for _ in range(n)]
