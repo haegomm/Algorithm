@@ -1,4 +1,6 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
 
 def move(i, j):
@@ -11,16 +13,7 @@ def move(i, j):
             ans = d
             return
         if nk > 0:
-            for dx, dy in [
-                (1, 2),
-                (1, -2),
-                (-1, 2),
-                (-1, -2),
-                (2, 1),
-                (-2, 1),
-                (2, -1),
-                (-2, -1),
-            ]:
+            for dx, dy in [(1, 2), (1, -2), (-1, 2), (-1, -2), (2, 1), (-2, 1), (2, -1), (-2, -1)]:
                 nx = x + dx
                 ny = y + dy
                 if (
