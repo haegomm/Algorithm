@@ -1,6 +1,4 @@
-import sys
 from collections import deque
-input = sys.stdin.readline
 
 
 def move(i, j):
@@ -13,7 +11,16 @@ def move(i, j):
             ans = d
             return
         if nk > 0:
-            for dx, dy in [(1, 2), (1, -2), (-1, 2), (-1, -2), (2, 1), (-2, 1), (2, -1), (-2, -1)]:
+            for dx, dy in [
+                (1, 2),
+                (1, -2),
+                (-1, 2),
+                (-1, -2),
+                (2, 1),
+                (-2, 1),
+                (2, -1),
+                (-2, -1),
+            ]:
                 nx = x + dx
                 ny = y + dy
                 if (
@@ -42,7 +49,7 @@ k = int(input())
 w, h = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(h)]
 visited = [[-1] * w for _ in range(h)]
-visited[0][0] = k
+visited[0][0] = k  # 시작 위치는 이미 방문한 것으로 처리
 ans = -1
 
 move(0, 0)
