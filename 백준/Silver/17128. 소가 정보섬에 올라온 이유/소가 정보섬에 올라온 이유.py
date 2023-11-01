@@ -6,9 +6,8 @@ products = [(cows[i] * cows[(i+1)%n] * cows[(i+2)%n] * cows[(i+3)%n]) for i in r
 sum_S = sum(products)
 
 for i in sticker:
-    i -= 1
     for j in range(4):
-        k = (i - j + n) % n
+        k = (i - 1 - j + n) % n
         sum_S -= products[k]
         products[k] *= -1
         sum_S += products[k]
