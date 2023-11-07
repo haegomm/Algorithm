@@ -3,7 +3,6 @@ from collections import deque
 def bfs():
     global water
     queue = deque([start])
-    visited[start[0]][start[1]] = 1
 
     while queue:
         
@@ -19,12 +18,12 @@ def bfs():
 
         for _ in range(len(queue)):
             x, y = queue.popleft()
-            if (x, y) == end:
-                return visited[x][y] - 1
             for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
                 nx = x + dx
                 ny = y + dy
                 if 0 <= nx < n and 0 <= ny < m and visited[nx][ny] == 0 and forest[nx][ny] != '*' and forest[nx][ny] != 'X':
+                    if (nx, ny) == end:
+                        return visited[x][y] + 1
                     visited[nx][ny] = visited[x][y] + 1
                     queue.append((nx, ny))
     
@@ -42,7 +41,6 @@ for i in range(n):
     for j in range(m):
         if forest[i][j] == 'S':
             start = (i, j)
-            forest[i][j] = '.'
         elif forest[i][j] == 'D':
             end = (i, j)
         elif forest[i][j] == '*':
