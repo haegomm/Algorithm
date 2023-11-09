@@ -49,7 +49,8 @@ while True:
 
     for i in range(11, -1, -1):
         for j in range(6):
-            if board[i][j] != '.':
+            if board[i][j] != '.' and not visited[i][j]:
+                visited[i][j] = True
                 if bfs(i, j):
                     flag = True
 
