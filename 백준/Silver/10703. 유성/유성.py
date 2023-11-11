@@ -31,5 +31,4 @@ for j in range(m):
         elif picture[i][j] == '#':
             result[i][j] = '#'
 
-for line in result:
-    print(''.join(line))
+print('\n'.join(''.join(row) for row in result))
