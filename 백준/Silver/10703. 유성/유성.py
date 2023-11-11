@@ -13,6 +13,7 @@ def search_distance():
                 flag = True
             elif picture[i][j] == '#':
                 min_ground = min(min_ground, i)
+                break
         if flag:
             distance = min(distance, min_ground - max_meteor - 1)
 
