@@ -19,7 +19,7 @@ def bfs(n,k):
 
         for next_x in [(2 * x), (x - 1), (x + 1)]:
             if 0 <= next_x <= 100000:
-                if visited[next_x] == -1 or visited[next_x] >= visited[x] + 1:
+                if visited[next_x] == -1 or visited[next_x] == visited[x] + 1:
                     visited[next_x] = visited[x] + 1
                     queue.append(next_x)
     
