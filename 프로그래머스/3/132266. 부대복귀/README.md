@@ -1,10 +1,10 @@
 # [level 3] 부대복귀 - 132266 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/132266) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/132266?language=javascript) 
 
 ### 성능 요약
 
-메모리: 38.6 MB, 시간: 99.26 ms
+메모리: 88.1 MB, 시간: 76.41 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 11월 0일 14:25:29
+2023년 11월 0일 14:33:53
 
 ### 문제 설명
 
