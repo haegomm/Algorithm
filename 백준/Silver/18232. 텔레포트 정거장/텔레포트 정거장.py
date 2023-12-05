@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 def bfs():
     visited[s] = True
@@ -6,7 +8,7 @@ def bfs():
 
     while queue:
         v, time = queue.popleft()
-        
+
         nxt = [v + 1, v - 1]
         if graph[v]:
             nxt += graph[v]
