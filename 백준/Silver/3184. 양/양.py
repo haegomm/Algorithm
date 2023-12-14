@@ -18,7 +18,7 @@ def bfs(i, j):
         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
             nx = x + dx
             ny = y + dy
-            if 0 <= nx < n and 0 <= ny < m and place[nx][ny] != '#' and not visited[nx][ny]:
+            if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny] and place[nx][ny] != '#':
                 if place[nx][ny] == 'o':
                     s += 1
                 elif place[nx][ny] == 'v':
