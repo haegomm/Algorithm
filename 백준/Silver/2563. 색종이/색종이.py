@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 ans = set()
 
 n = int(input())
