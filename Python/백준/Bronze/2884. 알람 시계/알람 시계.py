@@ -1,8 +1,9 @@
-from datetime import datetime, timedelta
-
 h, m = map(int, input().split())
-allam = datetime(2024, 1, 1, h, m)
 
-ans = allam - timedelta(minutes=45)
+tt = h * 60 + m
+tt = (tt - 45) % 1440
 
-print(ans.hour, ans.minute)
+h = tt // 60
+m = tt % 60
+
+print(h, m)
